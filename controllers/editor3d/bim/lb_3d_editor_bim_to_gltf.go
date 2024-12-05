@@ -3,11 +3,11 @@ package bim
 import (
 	"encoding/json"
 	"errors"
-	beego "github.com/beego/beego/v2/server/web"
 	"es-3d-editor-go-back/controllers"
 	"es-3d-editor-go-back/models/editor3d/bim"
 	"es-3d-editor-go-back/server"
 	"es-3d-editor-go-back/utils/wsocket"
+	beego "github.com/beego/beego/v2/server/web"
 	"math"
 	"os"
 	"path"
