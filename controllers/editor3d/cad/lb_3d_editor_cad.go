@@ -9,7 +9,7 @@ import (
 	"es-3d-editor-go-back/server"
 	"es-3d-editor-go-back/utils/wsocket"
 	"fmt"
-	"github.com/beego/beego/v2/adapter/logs"
+	"github.com/beego/beego/v2/core/logs"
 	"math"
 	"os"
 	"os/exec"
@@ -53,6 +53,7 @@ type ConversionResult struct {
 func (c *Lb3dEditorCadController) Dwg2Dxf() {
 	// 获取上传的文件
 	file, header, err := c.GetFile("file")
+	logs.Info(file)
 	if err != nil {
 		c.Data["json"] = server.RequestFail("获取上传文件失败！")
 
@@ -77,7 +78,7 @@ func (c *Lb3dEditorCadController) Dwg2Dxf() {
 	//20241108:文件名去除空格，不然cmd指令会报错
 	header.Filename = strings.Replace(header.Filename, " ", "", -1)
 
-	if ext != "dwg" {
+	if false {
 		conversionStatus = 1
 		converterFilePath = "/static/upload/cad/" + time.Now().Format("20060102") + "/" + header.Filename
 		dataPath = converterFilePath
@@ -247,8 +248,8 @@ func (c *Lb3dEditorCadController) Dwg2Dxf() {
 				cmd.ProcessState.ExitCode()
 
 				// 删除上传的临时文件和转换后的文件
-				os.Remove(dataPath)
-				os.Remove(outputFile)
+				//os.Remove(dataPath)
+				//os.Remove(outputFile)
 			}()
 		}
 	} else {
